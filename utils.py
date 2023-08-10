@@ -1,5 +1,7 @@
 import os
 import shutil
+
+
 def train_test_split_folder(path: str, output_path:str, test_split_size: float) -> None:
     """
         Takes in a path of data and divides it into training 
@@ -28,7 +30,8 @@ def train_test_split_folder(path: str, output_path:str, test_split_size: float) 
 
     # Walk through every class
     for class_name in classes:
-        
+
+        print(f"Current class: {class_name}")
         # Create the train folder for the class
         class_path_train = os.path.join(train_path, class_name)
         os.mkdir(class_path_train)
@@ -55,7 +58,7 @@ def train_test_split_folder(path: str, output_path:str, test_split_size: float) 
             shutil.move(src, dst)
 
         # Now for test
-        for image in train_images:
+        for image in test_images:
             # Move the image to the train path
             src = os.path.join(path, class_name, image)
             dst = os.path.join(class_path_test, image)
